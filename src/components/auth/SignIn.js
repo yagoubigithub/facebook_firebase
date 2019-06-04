@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { Grid, Button, Input } from "@material-ui/core";
 
-import {display} from '../../store/actions/authActions';
+import {signIn} from '../../store/actions/authActions';
 import {connect} from 'react-redux';
 class SignIn extends Component {
   state = {};
-  componentDidMount = () =>{
-    this.props.display();
+  
+  handelClick = () =>{
+    this.props.signIn("yagoubi.ae.2@gmail.com", "yagoubi10");
+
   }
   render() {
+    const {authErr} = this.props;
     return (
       <React.Fragment>
         <form>
@@ -20,8 +23,9 @@ class SignIn extends Component {
               <input className="login-input" type="password" name="password" />
             </Grid>
             <Grid item xs={4}>
-              <Button  size="small" variant="contained" >Connexion</Button>
+              <Button onClick={this.handelClick}  size="small" variant="contained" >Connexion</Button>
             </Grid>
+            {authErr ? authErr : null}
           </Grid>
         </form>
       </React.Fragment>
@@ -29,10 +33,16 @@ class SignIn extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch)=>{
-console.log('mapToProps', dispatch);
+const mapStateToProps = (state) =>{
   return {
-    display : ()=>dispatch(display())
+    authErr : state.auth.authErr
+  }
+}
+const mapDispatchToProps = (dispatch)=>{
+
+  
+  return {
+    signIn : (email,password)=>dispatch(signIn(email,password))
 
   }
 }
