@@ -7,6 +7,7 @@ import { Grid } from '@material-ui/core';
 import SignUp from './components/auth/SignUp';
 import {Route,Switch,BrowserRouter} from 'react-router-dom';
 import FirstPage from './components/firstpage/firstpage';
+import Home from './components/dashboard/home';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
 
 <Switch>
   <Route exact path='/' component={FirstPage} />
-  <Route path='/home' component={Dashboard} />
+  <Route path='/home' component={Home} />
 </Switch>
 
 </div>
