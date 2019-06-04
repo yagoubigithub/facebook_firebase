@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { Grid, Button, Input } from "@material-ui/core";
 
+import {display} from '../../store/actions/authActions';
+import {connect} from 'react-redux';
 class SignIn extends Component {
   state = {};
+  componentDidMount = () =>{
+    this.props.display();
+  }
   render() {
     return (
       <React.Fragment>
@@ -24,4 +29,11 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch)=>{
+console.log('mapToProps', dispatch);
+  return {
+    display : ()=>dispatch(display())
+
+  }
+}
+export default connect(null,mapDispatchToProps)(SignIn);
