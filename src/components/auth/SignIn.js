@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Button, Input } from "@material-ui/core";
 
 class SignIn extends Component {
   state = {};
@@ -7,15 +7,15 @@ class SignIn extends Component {
     return (
       <React.Fragment>
         <form>
-          <Grid container>
+          <Grid container spacing={4}>
             <Grid item xs={4}>
-              <input type="email" name="email" />
+              <input className="login-input" type="email" name="email" />
             </Grid>
             <Grid item xs={4}>
-              <input type="password" name="password" />
+              <input className="login-input" type="password" name="password" />
             </Grid>
             <Grid item xs={4}>
-              <button>Connexion</button>
+              <Button  size="small" variant="contained" >Connexion</Button>
             </Grid>
           </Grid>
         </form>
