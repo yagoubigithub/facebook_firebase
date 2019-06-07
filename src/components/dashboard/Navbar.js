@@ -13,8 +13,8 @@ class Navbar extends Component {
         if(!auth.uid) return <Redirect to='' /> 
         
         return ( 
-            <div>
-                <Button onClick={this.props.signOut} >Logout</Button>
+            <div className="navbar">
+                <Button variant="contained" onClick={this.props.signOut} >Logout</Button>
             </div>
          );
     }
