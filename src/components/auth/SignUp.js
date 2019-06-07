@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Typography, TextField, Radio, RadioGroup, FormControlLabel, Button } from "@material-ui/core";
+import { Typography, TextField, Radio, RadioGroup, FormControlLabel, Button, Dialog,
+  CircularProgress,
+  DialogContent } from "@material-ui/core";
 
 import MomentUtils from '@date-io/moment'; // choose your lib
 import {
@@ -23,6 +25,8 @@ class SignUp extends Component {
     password :  '',
     dateSignUp :  '',
     }
+    ,
+    progress: false
     
   };
 
@@ -35,7 +39,8 @@ class SignUp extends Component {
 e.preventDefault();
 
     
-    
+this.props.deleteSignUpErr();
+this.setState({progress : true});
     const user = this.state.user;
     user.dateSignUp = new Date().toString();
     this.setState({user})
@@ -47,13 +52,14 @@ e.preventDefault();
     const user = {...this.state.user};
     user[e.target.id] = e.target.value;
     this.setState({user});
+
   }
   handelChangegender = (e)=>{
 
     const user = {...this.state.user};
     user.gender = e.target.value;
     this.setState({user});
-    
+
   }
   handleDateChange =(selectDate)=>{
     const user = {...this.state.user};
@@ -64,6 +70,12 @@ e.preventDefault();
     const {signUpErr} = this.props;
     return (
       <div style={{ padding: 5 }}>
+       <Dialog disableBackdropClick disableEscapeKeyDown open={signUpErr ? false : this.state.progress}>
+          <DialogContent>
+            <CircularProgress color="secondary" />
+          </DialogContent>
+        </Dialog>
+
         <Typography variant="h3" >
           Create New Account
         </Typography>
@@ -113,6 +125,7 @@ e.preventDefault();
             id="password"
             onChange={this.handelChange}
             required
+            type="password"
           />
           <Typography variant="h6" gutterBottom>
             Birthday
@@ -168,7 +181,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
   return {
-    signUp : (newUser) =>dispatch(signUp(newUser))
+    signUp : (newUser) =>dispatch(signUp(newUser)),
+    deleteSignUpErr : ()=>dispatch({type : "DELETE_SIGNUP_ERROR"})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

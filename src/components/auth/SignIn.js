@@ -10,7 +10,7 @@ import {
 
 import { signIn } from "../../store/actions/authActions";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+
 
 class SignIn extends Component {
   state = {
@@ -25,6 +25,7 @@ class SignIn extends Component {
     this.props.signIn(email, password);
 
   };
+  
   render() {
     const { authErr } = this.props;
     

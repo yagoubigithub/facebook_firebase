@@ -31,6 +31,11 @@ const authReducer = (state = initStat, action) => {
           ...state,
           authErr:null
         };
+        case "DELETE_SIGNUP_ERROR":
+          return {
+            ...state,
+            signUpErr:null
+          };
    
 
 
