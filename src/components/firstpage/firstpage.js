@@ -20,7 +20,7 @@ class FirstPage extends Component {
             <SignUp />
           </Grid>
         </Grid>
-        <Dashboard />
+       
       </div>
     );
   }
